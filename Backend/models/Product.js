@@ -27,12 +27,13 @@ const productSchema = new mongoose.Schema({
   'Tools',
   'Air Fresheners',
   'Mops & Wipers',
-  'Pest Control'
+  'Pest Control',
+  'Stationary',
+  'Cleaning'
 ]
   },
   stock: { type: Number, default: 0 },
   imageUrl: String,
-  stock: { type: Number, default: 0 },
   unitsSold: { type: Number, default: 0 },
 
 }, { timestamps: true });

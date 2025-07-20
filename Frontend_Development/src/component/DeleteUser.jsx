@@ -62,6 +62,8 @@ const DeleteUser = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Mobile</th> 
+              <th>Address</th>
               <th>Address</th>
               <th>Action</th>
             </tr>
@@ -72,7 +74,8 @@ const DeleteUser = () => {
                 <td>{i + 1}</td>
                 <td>{u.name}</td>
                 <td>{u.email}</td>
-                <td>{u.address}</td>
+                <td>{u.mobile || "-"}</td>  
+                <td>{u.address || "-"}</td> 
                 <td>
                   <Button variant="danger" size="sm" onClick={() => handleDelete(u._id)}>Delete</Button>
                 </td>

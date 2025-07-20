@@ -11,6 +11,42 @@ const Cart = () => {
       .catch((err) => console.error("Error fetching cart:", err));
   }, []);
 
+  // Update Quantity
+  const updateQuantity = (id, newQty) => {
+    if (newQty < 1) return;
+
+    fetch(`http://localhost:5000/api/cart/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ quantity: newQty }),
+    })
+      .then((res) => res.json())
+      .then((updatedItem) => {
+        setCartItems((prevItems) =>
+          prevItems.map((item) =>
+            item.id === id ? { ...item, quantity: updatedItem.quantity } : item
+          )
+        );
+      })
+      .catch((err) => console.error("Error updating quantity:", err));
+  };
+
+  // Remove Item
+  const removeFromCart = (id) => {
+    fetch(`http://localhost:5000/api/cart/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item.id !== id)
+        );
+      })
+      .catch((err) => console.error("Error removing item:", err));
+  };
+
+  // Calculate Total
   const calculateTotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -25,6 +61,7 @@ const Cart = () => {
         <p className="text-center">Your cart is empty.</p>
       ) : (
         <div className="row">
+          {/* Cart Items */}
           <div className="col-md-8">
             {cartItems.map((item) => (
               <div key={item.id} className="card mb-3 shadow-sm">
@@ -41,12 +78,37 @@ const Cart = () => {
                     <div className="card-body">
                       <h5 className="card-title">{item.name}</h5>
                       <p className="card-text mb-1">Price: ₹{item.price}</p>
-                      <p className="card-text mb-0">Quantity: {item.quantity}</p>
-                      <p className="card-text">
+
+                      {/* Quantity Controls */}
+                      <div className="d-flex align-items-center mb-2 gap-2">
+                        <button
+                          className="btn btn-outline-secondary btn-sm"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          className="btn btn-outline-secondary btn-sm"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      <p className="card-text mb-0">
                         <small className="text-muted">
                           Subtotal: ₹{item.price * item.quantity}
                         </small>
                       </p>
+
+                      {/* Remove Button */}
+                      <button
+                        className="btn btn-danger btn-sm mt-2"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        🗑 Remove
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -54,7 +116,7 @@ const Cart = () => {
             ))}
           </div>
 
-          {/* Total Summary */}
+          {/* Cart Summary */}
           <div className="col-md-4">
             <div className="card bg-light shadow-sm">
               <div className="card-body">

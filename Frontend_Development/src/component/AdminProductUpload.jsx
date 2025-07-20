@@ -79,6 +79,24 @@ const AdminProductUpdate = ({ isUpdate = false, existingData = {} }) => {
         <option value="">Select Category</option>
         <option value="stationary">Stationary</option>
         <option value="cleaning">Cleaning</option>
+        <option value="Adhesives">Adhesives</option>
+        <option value="Calculator">Calculator</option>
+        <option value="Disposable Items">Disposable Items</option>
+        <option value="Envelope">Envelope</option>
+        <option value="Eraser">Eraser</option>
+        <option value="File/Folder">File/Folder</option>
+        <option value="Highlighter">Highlighter</option>
+        <option value="Marker">Marker</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+        <option value="Paper">Paper</option>
+        <option value="Pen">Pen</option>
+        <option value="Pencil">Pencil</option>
+        <option value="Printer">Printer</option>
+        <option value="Register">Register</option>
+        <option value="Tools">Tools</option>
+        <option value="Air Fresheners">Air Fresheners</option>
+        <option value="Mops & Wipers">Mops & Wipers</option>
+        <option value="Pest Control">Pest Control</option>
         {/* Add more */}
       </select>
       <input

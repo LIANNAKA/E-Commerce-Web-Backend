@@ -11,6 +11,8 @@ import ProductList from "../component/ProductList";
 import ForgotResetAdminPass from "../component/ForgotResetAdminPass";
 import AdminBannerUpload from "../component/AdminBannerUpload";
 import AdminOrderStatusPage from "../component/AdminOrderStatusPage";
+import AdmindeleteProducts from "../component/AdmindeleteProduct";
+import AdminProductStock from "../component/AdminProductStock";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("userlist");
@@ -30,6 +32,10 @@ const AdminDashboard = () => {
         return <ForgotResetAdminPass />;
       case "productupload":
         return <AdminProductForm />;
+      case "deleteproduct":
+        return <AdmindeleteProducts />;
+      case "productstock":
+        return <AdminProductStock />;
       case "bannerupload":
         return <AdminBannerUpload />;
       case "orderstatus":

@@ -1,29 +1,43 @@
 import Product from '../models/Product.js';
 import { logToFile } from '../utils/logger.js';
 
-// Create/Add a new product
+// Auto-generate productId based on name
 const generateProductId = (name) => {
   const trimmed = name.replace(/\s+/g, '').toLowerCase();
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   return `${trimmed}${randomNum}`;
-};
+}
+
+// Create/Add a new product
 export const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, stock, imageUrl } = req.body;
+    const { name, description, price, category, stock } = req.body;
     const productId = generateProductId(name);
-    const product = new Product({productId, name, description, price, category, stock, imageUrl });
+
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+    console.log('Product Data Debug:', {
+      name, description, price, category, stock, file: req.file
+    });
+
+    const product = new Product({
+      productId,
+      name,
+      description,
+      price,
+      category,
+      stock,
+      imageUrl
+    });
+
     await product.save();
+
     res.status(201).json({
       message: 'Product created successfully',
-      product: {
-        productId: product.productId,
-        name: product.name,
-        category: product.category,
-        price: product.price,
-        stock: product.stock
-      }
+      product
     });
   } catch (err) {
+    console.error("Error in createProduct:", err);
     res.status(500).json({ error: 'Error creating product', details: err.message });
   }
 };
@@ -49,21 +63,6 @@ export const getProductById = async (req, res) => {
   }
 };
 
-// Update
-// export const updateProduct = async (req, res) => {
-//   try {
-//     const {name, description, price, category, stock, imageUrl } = req.body;
-//     const updated = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       {name, description, price, category, stock, imageUrl },
-//       { new: true }
-//     );
-//     res.json({ message: 'Product updated', updated });
-//   } catch (err) {
-//     res.status(500).json({ error: 'Error updating product' });
-//   }
-// };
-
 //Update
 export const updateProductByProductId = async (req, res) => {
   try {
@@ -84,17 +83,6 @@ export const updateProductByProductId = async (req, res) => {
   }
 };
 
-
-// // Delete
-// export const deleteProduct = async (req, res) => {
-//   try {
-//     await Product.findByIdAndDelete(req.params.id);
-//     res.json({ message: 'Product deleted' });
-//   } catch (err) {
-//     res.status(500).json({ error: 'Error deleting product' });
-//   }
-// };
-
 //Delete
 export const deleteProductByProductId = async (req, res) => {
   try {
@@ -107,8 +95,6 @@ export const deleteProductByProductId = async (req, res) => {
     res.status(500).json({ error: 'Error deleting product', details: err.message });
   }
 };
-
-
 
 export const getProductStockStats = async (req, res) => {
   try {
@@ -123,10 +109,14 @@ export const buyProduct = async (req, res) => {
   try {
     const { productId } = req.params;
     const { quantity } = req.body;
-
+    if (!quantity || quantity <= 0) 
+    return res.status(400).json({ error: 'Invalid quantity' });
+  
     const product = await Product.findOne({productId});
 
     if (!product) return res.status(404).json({ error: 'Product not found' });
+    
+
     if (product.stock < quantity) return res.status(400).json({ error: 'Insufficient stock' });
 
     product.stock -= quantity;

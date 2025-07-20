@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Spinner, Alert } from "react-bootstrap";
+import { Table, Spinner, Alert,Form } from "react-bootstrap";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchTerm,setSearchTerm] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products/all")
+    axios.get("http://localhost:5500/api/products")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        setError("Failed to load product list.", err);
+        setError("Failed to load product list.",err);
         setLoading(false);
       });
   }, []);
 
+  const filteredProducts = products.filter((prod) =>
+    prod.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    prod.id.toString().includes(searchTerm)
+  );
+
   return (
     <div>
       <h3 className="mb-4">Product List</h3>
+
+      <Form.Control
+        type="text"
+        placeholder="Search by Name or ID"
+        className="mb-3"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
       {loading && <Spinner animation="border" />}
 
@@ -31,7 +45,7 @@ const ProductList = () => {
         <Alert variant="info">No products found.</Alert>
       )}
 
-      {!loading && products.length > 0 && (
+      {!loading && filteredProducts.length > 0 && (
         <Table striped bordered hover responsive>
           <thead className="table-dark">
             <tr>
@@ -42,7 +56,7 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((prod, idx) => (
+            {filteredProducts.map((prod, idx) => (
               <tr key={prod.id}>
                 <td>{idx + 1}</td>
                 <td>{prod.name}</td>

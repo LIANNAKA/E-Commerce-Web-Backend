@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ForgotPasswordModal from "./ForgotPasswordModel";
 import axiosInstance from "../axiosInstance";
-import { useNavigate } from "react-router-dom";
 import Modal from 'bootstrap/js/dist/modal';
 
 
@@ -20,7 +19,8 @@ function LoginModal({ setShowLoginModal }) {
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  
+ 
   const handleSignUp = async () => {
   if (!signupName || !signupMobile || !signupEmail || !signupPassword || !confirmPassword) {
     setMessage("Please fill in all fields.");
@@ -69,8 +69,11 @@ const handleLogin = async () => {
       password: loginPassword,
     });
 
-    localStorage.setItem("userData", JSON.stringify(data));
-    setMessage(data.message || `Welcome back, ${loginEmail}!`);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userName", data.userName || loginEmail);
+    window.dispatchEvent(new Event("storage"));  // Update Navbar
+
+    setMessage(data.message || `Welcome back, ${data.userName || loginEmail}!`);
 
     setTimeout(() => {
       setShowLoginModal(false);  // Close Modal (React way)

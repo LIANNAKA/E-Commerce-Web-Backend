@@ -14,6 +14,16 @@ import AdminDashboard from "./Routes/AdminDashboard";
 import UserOrderPlace from "./component/UserOrderPlace"
 import { useState } from "react";
 import AdminBannerUploader from "./component/AdminBannerUploader";
+import AdminProductStock from "./component/AdminProductStock";
+import UserDashboard from "./component/UserDashboard";
+import MyAddress from "./component/UserProfileDashboard/MyAddress";
+import MyOffer from "./component/UserProfileDashboard/MyOffer";
+import MyOrder from "./component/UserProfileDashboard/MyOrder";
+import MyProfile from "./component/UserProfileDashboard/MyProfile";
+import UserSideBar from "./component/UserProfileDashboard/UserSideBar";
+import Wishlist from "./component/UserProfileDashboard/Wishlist";
+
+
 
 
 
@@ -34,8 +44,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/adminorderstatus" element={<UserOrderPlace />} />
-          <Route path="/" element={<Home />} />
           <Route path="/admin/banner-upload" element={<AdminBannerUploader />} />
+          <Route path="/admin/stock" element={<AdminProductStock />} />
+          <Route path="/userdashboard" element={<UserDashboard/>}/>
+          <Route path="/profile" element={<MyProfile/>}/>
+          <Route path="/orders" element={<MyOrder/>}/>
+          <Route path="/wishlist" element={<Wishlist/>}/>
+          <Route path="/offers" element={<MyOffer/>}/>
+          <Route path="/offers" element={<UserSideBar/>}/>
+          <Route path="/address" element={<MyAddress/>}/>
           <Route
             path="/admin"
             element={

@@ -18,9 +18,11 @@ app.use(express.json());
 app.use('/api/admin', adminRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/products', productImageRoutes);
+app.use('/api/product-image', productImageRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/banner', homePageRoutes);  // Assuming you imported routes
+app.use('/uploads', express.static('uploads'));
+
 
   
 

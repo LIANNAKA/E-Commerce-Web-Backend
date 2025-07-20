@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  getUsers,
   getUserById,
   updateUser,
   deleteUser,
@@ -12,7 +13,7 @@ import {
 
 const router = express.Router();
 
-// router.get('/', getUsers);
+router.get('/', getUsers);
 router.get('/profile/:id', getUserProfile);
 router.post('/login', loginUser);
 router.get('/:id', getUserById);

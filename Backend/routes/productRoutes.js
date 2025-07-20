@@ -3,8 +3,6 @@ import {
   createProduct,
   getProducts,
   getProductById,
-  // updateProduct,
-  // deleteProduct,
   updateProductByProductId,
   getProductStockStats,
   restockProduct ,
@@ -12,14 +10,13 @@ import {
   getProductsByCategory,
   deleteProductByProductId
 } from '../controllers/productController.js';
+import upload from '../middleware/upload.js';  
 
 const router = express.Router();
 
-router.post('/add-product', createProduct);        // Add new product
-router.get('/all', getProducts);           // Get all products
-router.get('/:id', getProductById);     // Get one product
-// router.put('/:id', updateProduct);      // Update product
-// router.delete('/:id', deleteProduct);   // Delete product
+router.post('/add-product', upload.single('image'), createProduct);
+router.get('/all', getProducts);  // Get all products
+router.get('/:id', getProductById);     // Get one 
 router.put('/update-by-productid/:productId', updateProductByProductId);
 router.get('/admin/stock', getProductStockStats); 
 router.post('/buy/:productId', buyProduct);
