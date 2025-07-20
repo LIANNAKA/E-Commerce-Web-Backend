@@ -37,9 +37,19 @@ const handleQuantityChange = (id, delta) => {
     const newQty = Math.max(1, (prev[id] || 1) + delta);
     return {
       ...prev,
+<<<<<<< HEAD
       [id]: newQty,
     };
   });
+=======
+      [productId]: Math.max((prev[productId] || 1) + delta, 1),
+    }));
+  };
+
+  // And modify the add to cart:
+const handleAddToCart = (product) => {
+  alert(`${product.name} added to cart!`);
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
 };
 
 

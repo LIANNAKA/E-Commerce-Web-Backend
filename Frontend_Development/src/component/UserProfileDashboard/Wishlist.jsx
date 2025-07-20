@@ -11,7 +11,11 @@ const Wishlist = () => {
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get("http://localhost:5000/api/user/wishlist", {
+=======
+      .get("http://localhost:5500/api/user/wishlist", {
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -27,7 +31,11 @@ const Wishlist = () => {
 
   const handleRemove = (productId) => {
     axios
+<<<<<<< HEAD
       .delete(`http://localhost:5000/api/user/wishlist/${productId}`, {
+=======
+      .delete(`http://localhost:5500/api/user/wishlist/${productId}`, {
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
@@ -50,7 +58,11 @@ const Wishlist = () => {
 
   return (
     <Container className="my-4">
+<<<<<<< HEAD
       <h3 className="mb-4 fw-bold">❤ My Wishlist</h3>
+=======
+      <h3 className="mb-4 fw-bold">❤️ My Wishlist</h3>
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
 
       {message && <Alert variant="info">{message}</Alert>}
 
@@ -87,4 +99,8 @@ const Wishlist = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Wishlist;
+=======
+export default Wishlist;
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97

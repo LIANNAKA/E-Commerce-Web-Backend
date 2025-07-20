@@ -13,7 +13,11 @@ const MyProfile = () => {
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get("http://localhost:5000/api/user/profile", {
+=======
+      .get("http://localhost:5500/api/user/profile", {
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -34,7 +38,11 @@ const MyProfile = () => {
 
     try {
       setUploading(true);
+<<<<<<< HEAD
       const res = await axios.post("http://localhost:5000/api/user/upload-profile-pic", formData, {
+=======
+      const res = await axios.post("http://localhost:5500/api/user/upload-profile-pic", formData, {
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -97,4 +105,8 @@ const MyProfile = () => {
   );
 };
 
+<<<<<<< HEAD
 export default MyProfile;
+=======
+export default MyProfile;
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97

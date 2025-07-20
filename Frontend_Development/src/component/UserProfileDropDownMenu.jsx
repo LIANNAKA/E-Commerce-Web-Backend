@@ -11,10 +11,16 @@ const UserProfileDropDown = ({ userName, onLogout }) => {
         variant="transparent"
         className="nav-link text-white border-0 fw-semibold"
         id="profile-dropdown"
+<<<<<<< HEAD
         >
         {userName}
         </Dropdown.Toggle>
 
+=======
+      >
+        {userName || "Profile"}
+      </Dropdown.Toggle>
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
 
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => navigate("/userdashboard")}>
@@ -49,4 +55,8 @@ const UserProfileDropDown = ({ userName, onLogout }) => {
   );
 };
 
+<<<<<<< HEAD
 export default UserProfileDropDown;
+=======
+export default UserProfileDropDown;
+>>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
