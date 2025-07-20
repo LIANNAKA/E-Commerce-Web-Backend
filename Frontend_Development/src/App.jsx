@@ -12,31 +12,17 @@ import LoginModal from "./component/LoginModal";
 import ForgotPasswordModal from "./component/ForgotPasswordModel";
 import AdminDashboard from "./Routes/AdminDashboard";
 import UserOrderPlace from "./component/UserOrderPlace"
-
-import { useState } from "react";
-import AdminBannerUploader from "./component/AdminBannerUploader";
-<<<<<<< HEAD
-import AdminProductStock from "./component/AdminProductStock";
-import UserDashboard from "./component/UserDashboard";
+import SearchResults from "./Routes/SearchResult";
+import MyProfile from "./component/UserProfileDashboard/MyProfile";
 import MyAddress from "./component/UserProfileDashboard/MyAddress";
 import MyOffer from "./component/UserProfileDashboard/MyOffer";
 import MyOrder from "./component/UserProfileDashboard/MyOrder";
-import MyProfile from "./component/UserProfileDashboard/MyProfile";
+import Wishlist from "./component/UserProfileDashboard/Wishlist";
+import UserDashboard from "./component/UserDashboard";
+import AdminProductStock from "./component/AdminProductStock";
+import { useState } from "react";
+import AdminBannerUploader from "./component/AdminBannerUploader";
 import UserSideBar from "./component/UserProfileDashboard/UserSideBar";
-import Wishlist from "./component/UserProfileDashboard/Wishlist";
-
-=======
-import SearchResults from "./Routes/SearchResult";
-import MyProfile from "./component/UserProfileDashboard/MyProfile";
-import Myaddress from "./component/UserProfileDashboard/Myaddress";
-import Myoffers from "./component/UserProfileDashboard/Myoffers";
-import Myorders from "./component/UserProfileDashboard/Myorders";
-import Wishlist from "./component/UserProfileDashboard/Wishlist";
-import UserDashboard from "./component/UserDashboard";import { useState } from "react";
->>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
-
-
-
 
 function App() {
   const userRole = localStorage.getItem("userRole") || "guest";
@@ -55,9 +41,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/adminorderstatus" element={<UserOrderPlace />} />
-<<<<<<< HEAD
-          <Route path="/admin/banner-upload" element={<AdminBannerUploader />} />
-          <Route path="/admin/stock" element={<AdminProductStock />} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path="/userdashboard" element={<UserDashboard/>}/>
           <Route path="/profile" element={<MyProfile/>}/>
           <Route path="/orders" element={<MyOrder/>}/>
@@ -65,20 +49,9 @@ function App() {
           <Route path="/offers" element={<MyOffer/>}/>
           <Route path="/offers" element={<UserSideBar/>}/>
           <Route path="/address" element={<MyAddress/>}/>
-=======
-
-          <Route path="/" element={<Home />} />
+          <Route path="/admin/stock" element={<AdminProductStock />} />
           <Route path="/admin/banner-upload" element={<AdminBannerUploader />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/userdashboard" element={<UserDashboard/>}/>
-          <Route path="/profile" element={<MyProfile/>}/>
-          <Route path="/orders" element={<Myorders/>}/>
-          <Route path="/wishlist" element={<Wishlist/>}/>
-          <Route path="/offers" element={<Myoffers/>}/>
-          <Route path="/address" element={<Myaddress/>}/>
-          
 
->>>>>>> 8831020fd900bd3462c9029700e445b8ce93fd97
           <Route
             path="/admin"
             element={
